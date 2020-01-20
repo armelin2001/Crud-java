@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Evento app</title>
+</head>
+<body>
+	<h1>Evento</h1>
+	<table>
+	<tr>
+	<td><a href="/eventos">Voltar para lista de eventos</a></td>
+	</tr>
+	<tr th:each="evento: ${evento}">
+			<td>Nome: <span th:text="${evento.nome}"></span></td>
+			<td>Local: <span th:text="${evento.local}"></span></td>
+			<td>Data: <span th:text="${evento.data}"></span></td>
+			<td>Horario: <span th:text="${evento.horario}"></span></td>
+			<td><a th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.id)).build()}">Deletar Evento</a></td>
+	</tr>
+	<tr>
+		<form method="post">
+		<td>Nome: <input type="text" value="" name="nome"/></td>
+		<td>Local: <input type="text" value="" name="local"/></td>
+		<td>Data: <input type="date" value="" name="data"/></td>
+		<td>Horario: <input type="text" value="" name="horario"/></td>
+		<td><a type="submit" th:href="${(#mvc.url('EC#alterarEvento').arg(0, evento.id)).build()}">Alterar evento</a></td>
+		</form>
+	</tr>
+	</table>
+</body>
+</html>

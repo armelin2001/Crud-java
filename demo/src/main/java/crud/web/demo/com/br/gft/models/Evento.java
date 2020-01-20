@@ -1,42 +1,34 @@
 package crud.web.demo.com.br.gft.models;
 
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Evento extends AbstractEntity{
-	private static final long serialVersionUID = 1L;
-	private int id;
-	
+public class Evento implements Serializable{
+
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	@Id//usando o id para poder pegar todos os atributos pelo codigo
+	@GeneratedValue(strategy=GenerationType.AUTO)//gerando um valor automatico de id
+	private long id;
+
 	private String nome;
 	private String local;
 	private String data;
 	private String horario;
 	public static List<Evento> eventos;
-	static {
-		repositorioDeEventos();
-	}
-	public Evento(int id, String nome){
-		this.nome= nome;
-		this.id = id;
-		
-	}
 	public Evento() {
 		
-	}
-	private static void repositorioDeEventos() {
-		eventos= new ArrayList<>();
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getNome() {
 		return nome;
